@@ -22,7 +22,11 @@ var entryIDCharacters = []rune("abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXY
 
 type (
 	EntryPostResponse struct {
-		ID string `json:"id"`
+		ID                  string `json:"id"`
+		ExternalShort       string `json:"external_short"`
+		ExternalLong        string `json:"external_long"`
+		InternalShort       string `json:"internal_short"`
+		InternalLong        string `json:"internal_long"`
 	}
 
 	dbError struct {
