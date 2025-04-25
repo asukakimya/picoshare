@@ -263,6 +263,19 @@ func (s Server) insertFileFromRequest(r *http.Request, expiration picoshare.Expi
 	}
 
 	id := generateEntryID()
+	extHost := s.canonicalHost(false, r)
+	intHost := s.canonicalHost(true, r)
+	
+	resp := EntryPostResponse{
+	    ID:            id.String(),
+	    ExternalShort: fmt.Sprintf("%s/%s", extHost, id),
+	    ExternalLong:  fmt.Sprintf("%s/-%s", extHost, id),
+	    InternalShort: fmt.Sprintf("%s/%s", intHost, id),
+	    InternalLong:  fmt.Sprintf("%s/-%s", intHost, id),
+	}
+	respondJSON(w, resp)
+	return
+
 	err = s.getDB(r).InsertEntry(reader,
 		picoshare.UploadMetadata{
 			ID:          id,
