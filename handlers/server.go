@@ -26,6 +26,8 @@ type (
 		spaceChecker  SpaceChecker
 		collector     *garbagecollect.Collector
 		clock         Clock
+		externalHost  string
+		internalHost  string
 	}
 )
 
