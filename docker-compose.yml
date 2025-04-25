@@ -1,0 +1,21 @@
+version: "3.2"
+services:
+  picoshare:
+    build: .
+    env_file: .env
+    ports:
+      - 4001:4001
+    command: -db /data/store.db
+    volumes:
+      - data:/data
+    networks:
+      - dokploy-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  data:
