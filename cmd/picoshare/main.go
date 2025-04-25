@@ -47,7 +47,7 @@ func main() {
 
 	clock := handlers.NewClock()
 
-	server := handlers.New(authenticator, &store, spaceChecker, &collector, &clock)
+	server := handlers.New(authenticator, &store, spaceChecker, &collector, &clock, os.Getenv("EXTERNAL_HOST"), os.Getenv("INTERNAL_HOST"))
 
 	h := gorilla.LoggingHandler(os.Stdout, server.Router())
 	if os.Getenv("PS_BEHIND_PROXY") != "" {
